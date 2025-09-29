@@ -32,8 +32,8 @@ class StoredSurveyRecord(SurveySubmission):
     source: Literal["homepage", "email", "gr", "other"] = "other"
     user_agent: Optional[str] = None
 
-    email: str
-    age: str
+    hashed_email: str
+    hashed_age: str
     submission_id: str
 
 
