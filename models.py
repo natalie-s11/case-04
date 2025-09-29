@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Literal
 from pydantic import BaseModel, Field, EmailStr, validator
 
 class SurveySubmission(BaseModel):
