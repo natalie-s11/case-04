@@ -54,6 +54,8 @@ def submit_survey():
         comments=submission.comments,
         hashed_email = hashed_email,
         hashed_age = hashed_age,
+        user_agent = submission.user_agent,
+        source = submission.source,
         submission_id=submission_id,
         received_at=datetime.now(timezone.utc),
         ip=request.headers.get("X-Forwarded-For", request.remote_addr or "")
