@@ -45,8 +45,11 @@ def submit_survey():
 
     # Create record with hashed PII and optional user_agent
     record = StoredSurveyRecord(
-        **submission.dict(exclude={"email", "age", "submission_id"}),  # remove raw email/age/submission_id
-        email=sha256_hash(submission.email),
+        name=submission.name,
+        consent=submission.connect,
+        rating=submission.rating,
+        comments=submission.comments,
+        email=sha256_hash(submission.email.strip().lower()),
         age=sha256_hash(str(submission.age)),
         submission_id=submission_id,
         received_at=datetime.now(timezone.utc),
