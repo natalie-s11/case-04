@@ -22,5 +22,18 @@ class SurveySubmission(BaseModel):
             raise ValueError("consent must be true")
         return v
 
-# Stored record inherits from SurveySubmission and adds metadata
 class StoredSurveyRecord(SurveySubmission):
+    received_at: datetime
+    ip: str
+    name: str
+    consent: bool
+    rating: int
+    comments: Optional[str] = None
+    source: Literal["homepage", "email", "gr", "other"] = "other"
+    user_agent: Optional[str] = None
+
+    email: str
+    age: str
+    submission_id: str
+
+
