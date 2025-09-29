@@ -23,7 +23,7 @@ class SurveySubmission(BaseModel):
             raise ValueError("consent must be true")
         return v
 
-class StoredSurveyRecord(SurveySubmission):
+class StoredSurveyRecord(BaseModel):
     received_at: datetime
     ip: str
     name: str
