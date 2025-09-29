@@ -3,6 +3,7 @@ from typing import Optional, Literal
 from pydantic import BaseModel, Field, EmailStr, validator
 
 class SurveySubmission(BaseModel):
+    source: Literal["homepage", "email", "qr", "other"] = "other"
     name: str = Field(..., min_length=1, max_length=100)
     email: EmailStr
     age: int = Field(..., ge=13, le=120)
@@ -29,7 +30,7 @@ class StoredSurveyRecord(SurveySubmission):
     consent: bool
     rating: int
     comments: Optional[str] = None
-    source: Literal["homepage", "email", "gr", "other"] = "other"
+    source: Literal["homepage", "email", "qr", "other"] = "other"
     user_agent: Optional[str] = None
 
     hashed_email: str
