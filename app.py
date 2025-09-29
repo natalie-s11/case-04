@@ -42,15 +42,18 @@ def submit_survey():
     else:
         timestamp = datetime.now().strftime("%Y%m%d%H")
         submission_id = sha256_hash(submission.email + timestamp)
-
+    email_norm = submission.email.strip().lower()
+    hashed_email = sha256_hash(email_norm)
+    hashed_age = sha256_hash(str(submission.age))
+    
     # Create record with hashed PII and optional user_agent
     record = StoredSurveyRecord(
         name=submission.name,
         consent=submission.consent,
         rating=submission.rating,
         comments=submission.comments,
-        email=sha256_hash(submission.email.strip().lower()),
-        age=sha256_hash(str(submission.age)),
+        hashed_email = hashed_email,
+        hashed_age = hashed_age,
         submission_id=submission_id,
         received_at=datetime.now(timezone.utc),
         ip=request.headers.get("X-Forwarded-For", request.remote_addr or "")
